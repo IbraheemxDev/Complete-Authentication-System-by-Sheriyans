@@ -1,15 +1,15 @@
-import User from "../models/user.model.js"
+import {User} from "../models/user.model.js"
 
-async function register(req,res) {
+ export const register =async (req,res)=> {
 
     const {username,email,password}=req.body
     if(
         [username,email,password].some((field)=>field?.trim()==="")
     ){
-        res.status(400).json({message:"All fields are required"})
+        return res.status(400).json({message:"All fields are required"})
     }
     const isAlreadyRegistered= await User.findOne(
-        $or:[{username},{email}]
+       { $or:[{username},{email}]}
     )
 
     if(isAlreadyRegistered){
@@ -29,5 +29,8 @@ async function register(req,res) {
             message:"something wrong while registering user "
         })
     }
-    return res.status(200).json({message:"User created Succesfully"},userCreated)
+    return res.status(200).json({message:"User created Succesfully",
+        data:userCreated
+    })
 }
+ 

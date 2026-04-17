@@ -27,7 +27,7 @@ userSchema.pre("save",async function(){
     this.password = await bcrypt.hash(this.password, 10);
 })
 
-userSchema.methods.genrateAccessTokenfunction =(){
+userSchema.methods.genrateAccessToken=function (){
     return jwt.sign({
         _id:this._id,
         email:this.email,
