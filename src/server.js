@@ -2,7 +2,7 @@
 import dotenv from "dotenv"  //dotenv is liye use hota hai taake secrets secure rahen aur code production-ready ho.
 import connectDB from "./db/index.js";
 dotenv.config({
-    path:'../.env'
+    path:'./.env'
 })
 import { app } from "./app.js"; 
 connectDB()
